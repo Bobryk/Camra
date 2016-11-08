@@ -1,0 +1,35 @@
+One point for each of the below:
+      Use ES6 component declaration
+Use JSX
+Use some ES6 syntax transformations
+Use some ES7 syntax transformations
+Use Redux to manage state
+Use Redux-thunk to write an action creator that returns a function instead of an action
+      Component which manages its own state
+Component which is stateless, but receives props
+      Apply component styles
+      Style component(s) using all kinds of Flexbox options
+      Handle user (like text) input and display it in a different place
+Use a ScrollView
+Use a ListView
+Fetch data with AJAX (isomorphic-fetch)
+Submit data with AJAX (isomorphic-fetch)
+Local (on-device) persistence using AsyncStorage
+Navigation using Scenes and Navigator, etc
+Native-like routing with back buttons, etc
+Tab navigation footer (TabBar)
+      Display images in the interface
+      Handle touch event with feedback to user
+Handle GESTURE event with feedback to the user
+Use the Animated library to animate something
+Use a React Native Timer
+Write any kind of test for your React Native code
+      Deploy app on a real device
+      Have some platform-specific code (can be simple)
+      Use a component from an open source React Native NPM package
+Utilize relevant React Native APIs listed in the docs
+      Utilize relevant React Native Components listed in the docs
+Write a component which is a wrapper for native code. 1 point for each mobile OS
+Implement something awesome that you found in an open source React Native app
+Implement something awesome that is not on this list
+
