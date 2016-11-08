@@ -3,8 +3,8 @@ One point for each of the below:
 Use JSX
 Use some ES6 syntax transformations
 Use some ES7 syntax transformations
-Use Redux to manage state
-Use Redux-thunk to write an action creator that returns a function instead of an action
+      Use Redux to manage state
+      Use Redux-thunk to write an action creator that returns a function instead of an action
       Component which manages its own state
 Component which is stateless, but receives props
       Apply component styles

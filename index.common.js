@@ -1,15 +1,6 @@
-import React from 'react';
-import {
-  AppRegistry
-} from 'react-native';
-import App from './App';
+'use strict';
 
-class Camra extends React.Component {
-  render() {
-    return (
-      <App />
-    );
-  }
-}
+import React, { AppRegistry } from 'react-native';
+import App from './src/containers/App';
 
-AppRegistry.registerComponent('Camra', () => Camra);
+AppRegistry.registerComponent('Camra', () => App);
