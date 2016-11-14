@@ -3,5 +3,6 @@ export type GetState = () => Object;
 export type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
 export type PromiseAction = Promise<Action>;
 export type Action =
-    { type: 'IMAGE_SAVE', payload: Object }
+    { type: 'IMAGE_LOAD', payload: Object }
+  | { type: 'IMAGE_LOADED'}
 

@@ -1,20 +1,34 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 import {
   Text,
   View,
-  TouchableOpacity,
+  TouchableHighlight,
   Image,
+  Slider,
   Platform
 } from 'react-native'
 
 import { connect } from 'react-redux'
+
 import ImagePicker from 'react-native-image-picker'
+import { Surface } from 'gl-react-native'
+import Saturation from './saturation'
 
 import { mainStyle as styles } from '../styles'
 
-import { updateImage } from '../actions';
+import { updateImage } from '../actions'
 
-class Home extends React.Component {
+const placeholderImage = require('../images/placeholder.png')
+
+
+
+class Home extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      saturationFactor: 1,
+    }
+  }
 
   selectPhotoTapped() {
     const options = {
@@ -35,22 +49,43 @@ class Home extends React.Component {
         } else {
           source = {uri: response.uri.replace('file://', ''), isStatic: true}
         }
-
         this.props.onImageSelect(source)
       }
     })
   }
 
   render() {
+    const saturationFactor = this.state.saturationFactor
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
-          <View style={[styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
-          { this.props.image === null ? <Text>Select a Photo</Text> :
-            <Image style={styles.avatar} source={this.props.image} />
-          }
-          </View>
-        </TouchableOpacity>
+
+        <Text style={styles.header}>CAMRA</Text>
+
+        <View style={styles.avatarContainer}>
+        { !this.props.loaded ?
+          <Image style={styles.placeholderImage} source={require('../images/placeholder.png')} /> :
+          <Surface style={styles.surface} width={225} height={400}>
+            <Saturation
+              factor={saturationFactor}
+              image={this.props.image}
+            />
+          </Surface>
+        }
+        </View>
+        <View style={styles.sliderContainer}>
+          <Text style={styles.saturationText}>Saturation</Text>
+          <Slider
+            style={styles.saturationSlider}
+            maximumValue={8}
+            value={saturationFactor}
+            onValueChange={value => this.setState({ saturationFactor: value })}
+          />
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight style={styles.touch} onPress={this.selectPhotoTapped.bind(this)}>
+            <Text style={styles.selectText}>Load Image</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     )
   }
@@ -59,13 +94,15 @@ class Home extends React.Component {
 
 Home.propTypes = {
   image: PropTypes.object.isRequired,
-  onImageSelect: PropTypes.func.isRequired
+  onImageSelect: PropTypes.func.isRequired,
+  loaded: PropTypes.bool.isRequired
 }
 
 export { Home }
 
 const mapStateToProps = state => ({
-  image: state.image
+  image: state.image.source,
+  loaded: state.image.loaded
 })
 // TODO kill es-lint disable when using dispatch
 /* eslint-disable no-unused-vars */

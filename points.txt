@@ -31,5 +31,5 @@ Utilize relevant React Native APIs listed in the docs
       Utilize relevant React Native Components listed in the docs
 Write a component which is a wrapper for native code. 1 point for each mobile OS
 Implement something awesome that you found in an open source React Native app
-Implement something awesome that is not on this list
+      Implement something awesome that is not on this list
 
