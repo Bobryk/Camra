@@ -7,9 +7,7 @@ const initialImageState = {
     uri: '',
     isStatic: true
   },
-  base64: '',
-  width: 100,
-  height: 100
+  base64: ''
 }
 
 const image = (state = initialImageState, action: Action) => {
