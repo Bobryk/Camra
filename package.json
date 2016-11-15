@@ -14,11 +14,14 @@
     "gl-react-native": "^2.36.0",
     "react": "15.3.2",
     "react-native": "0.36.1",
+    "react-native-fs": "^2.0.1-rc.2",
     "react-native-image-picker": "^0.22.13",
     "react-redux": "^4.4.5",
+    "react-timer-mixin": "^0.13.3",
     "redux": "^3.6.0",
     "redux-actions": "^0.13.0",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "whatwg-fetch": "^1.1.0"
   },
   "jest": {
     "preset": "jest-react-native"

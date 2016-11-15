@@ -5,4 +5,5 @@ export type PromiseAction = Promise<Action>;
 export type Action =
     { type: 'IMAGE_LOAD', payload: Object }
   | { type: 'IMAGE_LOADED'}
-
+  | { type: 'IMAGE_SAVE', payload: String }
+  | { type: 'RESET' }

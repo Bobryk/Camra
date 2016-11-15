@@ -4,15 +4,12 @@ import {
   View,
   TouchableHighlight,
   Image,
-  Slider,
   Platform
 } from 'react-native'
 
 import { connect } from 'react-redux'
 
 import ImagePicker from 'react-native-image-picker'
-import { Surface } from 'gl-react-native'
-import Saturation from './saturation'
 
 import { mainStyle as styles } from '../styles'
 
@@ -23,14 +20,13 @@ const placeholderImage = require('../images/placeholder.png')
 
 
 class Home extends Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      saturationFactor: 1,
+  static get defaultProps() {
+    return {
+      title: 'Home'
     }
   }
 
-  selectPhotoTapped() {
+  selectPhotoTapped = () => {
     const options = {
       quality: 1.0,
       maxWidth: 500,
@@ -50,36 +46,21 @@ class Home extends Component {
           source = {uri: response.uri.replace('file://', ''), isStatic: true}
         }
         this.props.onImageSelect(source)
+        this.props.onForward(1)
+
+
       }
     })
   }
 
-  render() {
-    const saturationFactor = this.state.saturationFactor
+  render = () => {
     return (
       <View style={styles.container}>
 
         <Text style={styles.header}>CAMRA</Text>
 
         <View style={styles.avatarContainer}>
-        { !this.props.loaded ?
-          <Image style={styles.placeholderImage} source={require('../images/placeholder.png')} /> :
-          <Surface style={styles.surface} width={225} height={400}>
-            <Saturation
-              factor={saturationFactor}
-              image={this.props.image}
-            />
-          </Surface>
-        }
-        </View>
-        <View style={styles.sliderContainer}>
-          <Text style={styles.saturationText}>Saturation</Text>
-          <Slider
-            style={styles.saturationSlider}
-            maximumValue={8}
-            value={saturationFactor}
-            onValueChange={value => this.setState({ saturationFactor: value })}
-          />
+          <Image style={styles.placeholderImage} source={require('../images/placeholder.png')} />
         </View>
         <View style={styles.buttonContainer}>
           <TouchableHighlight style={styles.touch} onPress={this.selectPhotoTapped.bind(this)}>
@@ -95,7 +76,9 @@ class Home extends Component {
 Home.propTypes = {
   image: PropTypes.object.isRequired,
   onImageSelect: PropTypes.func.isRequired,
-  loaded: PropTypes.bool.isRequired
+  loaded: PropTypes.bool.isRequired,
+  onForward: PropTypes.func.isRequired,
+  title: PropTypes.string
 }
 
 export { Home }
@@ -112,7 +95,7 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-export default connect(
+export default ConnectedComponent = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Home)
